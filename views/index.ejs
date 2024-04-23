@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="main p-10 w-full min-h-screen bg-zinc-900">
+        <div class="form">
+            <form action="/create" method="post">
+                <input type="text" class="block text-white outline-none w-full px-5 py-2 rounded-md bg-zinc-800" name="name" placeholder="Task name">
+                <textarea class="block text-white outline-none resize-none mt-1 mb-1 w-full px-5 py-2 rounded-md bg-zinc-800" name="details" placeholder="Write somthing about text..."></textarea>
+                <input type="submit" value="Create File" class="px-10 py-3 rounded-md bg-blue-600 text-white mb-3 mt-2">
+            </form>
+        </div>
+        <div class="tasks flex flex-wrap gap-4">
+            <% if(files.length > 0 ){ %>
+                <% files.forEach(function(file){ %>
+                    <div class="task gap-4 w-72 p-3 bg-zinc-800 tracking-tighter rounded-md text-white text-bold">
+                        <h3 class="text-3xl tracking-tighter mb-3" ><%= file.name %></h3>
+                        <p>
+                            <% if(file.details.length > 35) { %>
+                                <%= file.details.substring(0, 35)+'...' %> 
+                                <% } else{ %>
+                                    <%= file.details %>
+                                    <% } %>
+                        </p>
+                        <a href='/read/<%= file.name %>' class="text-blue-500 mt-4 inline-block">Read more</a>
+                        <a href='/edit/<%= file.name %>' class="text-green-500 mt-4 pl-5 inline-block">Edit File</a>
+                        <a href='/delete/<%= file.name %>' class="text-red-700 mt-4 pl-5 inline-block">Delete File</a>
+                    </div>
+                    <% }) %>
+                <% } else { %>
+                    <h3 class="text-2xl text-white">no post yet.</h3>
+                <% } %>
+        </div>
+    </div>
+
+</body>
+</html>

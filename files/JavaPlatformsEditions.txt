@@ -1,0 +1,10 @@
+There are 4 platforms or editions of Java:
+
+1) Java SE (Java Standard Edition)
+It is a Java programming platform. It includes Java programming APIs such as java.lang, java.io, java.net, java.util, java.sql, java.math etc. It includes core topics like OOPs, String, Regex, Exception, Inner classes, Multithreading, I/O Stream, Networking, AWT, Swing, Reflection, Collection, etc.
+
+2) Java EE (Java Enterprise Edition)
+It is an enterprise platform that is mainly used to develop web and enterprise applications. It is built on top of the Java SE platform. It includes topics like Servlet, JSP, Web Services, EJB, JPA, etc.
+
+3) Java ME (Java Micro Edition)
+It is a micro platform that is dedicated to mobile applications.

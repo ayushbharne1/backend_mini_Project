@@ -38,6 +38,23 @@ app.get('/delete/:filename', function(req,res){
 
     })
 })
+
+// Update 
+app.get('/update/:filename', function(req,res){
+    const title = req.params.filename+".txt";
+    fs.readFile(`./files/${title}`, 'utf-8', function(err, data){
+        if(err) return console.log(err);
+        res.render('update', {name:req.params.filename, data:data})
+    })
+})
+app.post('/update/:filename',function(req,res){
+    fs.writeFile(`./files/${req.params.filename+ ".txt"}`, req.body.details , function(err,data){
+        if(err) return err;
+        res.redirect("/");
+    })
+})
+
+
 // create
 app.post('/create', function(req, res){
     var fname = req.body.name.split(' ').join('') + '.txt';

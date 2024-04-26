@@ -11,8 +11,9 @@
     <div class="main p-10 w-full min-h-screen bg-zinc-900">
         <div class="form">
             <a href="/" class="text-blue-600 mb-5 inline-block"><i class="ri-arrow-left-line"></i> Back to home</a>
-            <form action="/update/<%= name %>" method="post">
-                <input type="text" class="block text-zinc-400 outline-none w-full px-5 py-2 rounded-md bg-zinc-800" name="name" value="<%= name %>" disabled>
+            <form action="/update/<%= fname %>" method="post">
+                <input type="text" class="block text-zinc-400 outline-none w-96 px-5 py-2 rounded-md bg-zinc-800" name="name" value="<%= fname %>" disabled>
+                <input type="text" class="block text-white outline-none w-96 px-5 py-2 rounded-md mt-1 bg-zinc-800" name="name" value="<%= fname %>" >
                 <textarea class="block text-white outline-none resize-none mt-1 mb-1 w-full px-5 py-2 rounded-md bg-zinc-800" name="details" ><%= data %></textarea>
                 <input type="submit" value="Update File" class="px-10 py-3 rounded-md bg-yellow-600 text-white mb-3 mt-2">
             </form>

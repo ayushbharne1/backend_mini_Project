@@ -12,9 +12,9 @@ app.get('/', function(req, res){
     var arr = [];
     fs.readdir('./files',function(err, files){
         files.forEach(function(file){
-            var rmtxt = path.parse(file).name;                             //removing .txt 
+            // var rmtxt = path.parse(file).name;                             //removing .txt 
             var data = fs.readFileSync(`./files/${file}`, "utf-8");
-            arr.push({name: rmtxt, details: data})
+            arr.push({name: file, details: data})
         })
     res.render("index", {files: arr});
 
@@ -31,7 +31,7 @@ app.get('/read/:filename', function(req,res){
 })
 // delete
 app.get('/delete/:filename', function(req,res){
-    const title = req.params.filename+".txt";
+    const title = req.params.filename;
     fs.unlink(`./files/${title}`, function(err){
         if(err) return console.log(err);
         res.redirect("/");
@@ -41,15 +41,19 @@ app.get('/delete/:filename', function(req,res){
 
 // Update 
 app.get('/update/:filename', function(req,res){
-    const title = req.params.filename+".txt";
+    const title = req.params.filename;
     fs.readFile(`./files/${title}`, 'utf-8', function(err, data){
         if(err) return console.log(err);
-        res.render('update', {name:req.params.filename, data:data})
+        res.render('update', {fname:req.params.filename, data:data})
     })
 })
 app.post('/update/:filename',function(req,res){
-    fs.writeFile(`./files/${req.params.filename+ ".txt"}`, req.body.details , function(err,data){
+    
+    fs.writeFile(`./files/${req.params.filename}`, req.body.details , function(err,data){
         if(err) return err;
+        fs.rename(`./files/${req.params.filename.split(' ').join('')}`, `./files/${req.body.name}`,function(err){
+            if(err) console.log(err);
+        })
         res.redirect("/");
     })
 })
